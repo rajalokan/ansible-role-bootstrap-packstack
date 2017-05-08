@@ -1,0 +1,28 @@
+---
+# tasks file for bootstrap_packstack
+
+- name: Install centos-release-openstack-mitaka
+  yum:
+    name: centos-release-openstack-mitaka
+    state: installed
+  become: yes
+
+- name: Install openstack-packstack
+  yum:
+    name: openstack-packstack
+    state: installed
+  become: yes
+
+- name: Generate ssh keys
+  command: ssh-keygen -t rsa -f /root/.ssh/id_rsa -N ''
+  become: yes
+
+- name: Copy packstack-answer-file to `/opt/`
+  template:
+    src: packstack-answer-file.j2
+    dest: /opt/packstack-answer-file
+  become: yes
+
+# - name: Run packstack
+#   command: packstack --answer-file /opt/packstack-answer-file
+#   become: yes

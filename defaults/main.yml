@@ -1,0 +1,4 @@
+---
+# defaults file for bootstrap_packstack
+password: rajalokan
+ip_addr: "{{ ansible_default_ipv4.address }}"
